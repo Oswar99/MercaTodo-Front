@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Sitio en construccion." />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <title>Adelissa</title>
+
+    <script type="text/javascript">
+      function get_ip(obj) {
+        localStorage.setItem("ip", obj.ip);
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="https://api.ipify.org/?format=jsonp&callback=get_ip"
+    ></script>
+
+  </head>
+
+  <body
+    style="
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-style: italic;
+      background-color: #F8FAF9;
+      color: #0B3B17;
+    "
+    class="thinBar"
+  >
+    <noscript>Sitio en Construccion.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
