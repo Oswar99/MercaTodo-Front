@@ -296,7 +296,7 @@ const ElementInventario: React.FC<IElementInventario> = ({ element, multiple, fa
     }
 
     return (
-        <div className="rounded-lg shadow-sm d-flex" onClick={setSelect} style={{ height: "100%", alignItems: "center" }}>
+        <div className="rounded-lg shadow-sm d-flex justify-content-center" onClick={setSelect} style={{ height: "100%", alignItems: "center" }}>
 
             <div>
                 <ComponentVis2 elements={selected} interval={5000} />
@@ -331,11 +331,9 @@ export const LstInventario: React.FC<ILstInventario> = ({ facturacion, limit }) 
         count: 0,
     });
 
-    const { id }: any = useParams();
 
     const [filter, setFilter] = useState({
         key: localStorage.getItem("acc"),
-        tienda: id,
         filter: {},
         limit: limit ? limit : 500,
     });
@@ -376,7 +374,6 @@ export const LstInventario: React.FC<ILstInventario> = ({ facturacion, limit }) 
         };
         setFilter({
             key: filter.key,
-            tienda: filter.tienda,
             filter: filt,
             limit: filter.limit,
         });

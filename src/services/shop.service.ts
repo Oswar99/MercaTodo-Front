@@ -63,6 +63,15 @@ export function getAllProductos(id:any): Promise<any>{
     });
 };
 
+export function getAllP(id:any): Promise<any>{
+    return new Promise<any>( resolve => {
+        const data = encodeToken(id);
+        axios.get(`${query}/v3/products/${data}`)
+        .then(result => resolve(result) )
+        .catch(error => resolve( {data: {successed:false}} ) );
+    });
+};
+
 export function getLastProductos(id:any): Promise<any>{
     return new Promise<any>( resolve => {
         const data = encodeToken(id);

@@ -111,7 +111,7 @@ export const BodyDrop: React.FC<IBodyDrop> = ({ fnSelect, fnUpd, father, bgColor
                 <div className="col-md-12">
                     <div className="rounded-lg text-center py-1"
                         key={index}
-                        style={(selected === val.name) ? { backgroundColor: "#A9F5BC" } : { backgroundColor: bgColor ? bgColor : "white", borderStyle: bgColor ? "none" : "solid", borderWidth: 1, borderColor: "#A9F5BC" }}
+                        style={(selected === val._id) ? { backgroundColor: "#A9F5BC" } : { backgroundColor: bgColor ? bgColor : "white", borderStyle: bgColor ? "none" : "solid", borderWidth: 1, borderColor: "#A9F5BC" }}
                     >
                         {(!mode) ?
                             <div className="row">
@@ -125,7 +125,7 @@ export const BodyDrop: React.FC<IBodyDrop> = ({ fnSelect, fnUpd, father, bgColor
                                 </div>
                             </div>
                             :
-                            <div onClick={() => setSelect(val.name)} >
+                            <div onClick={() => setSelect(val._id)} >
                                 {val.name}
                             </div>
                         }
@@ -144,8 +144,6 @@ const Categories: React.FC = () => {
     const [catSelect, setCatSelect] = useState("");
     const [upd, setUpd] = useState(false);
 
-    const { id }: any = useParams();
-
     const states = useState({
         name: "",
     });
@@ -163,7 +161,6 @@ const Categories: React.FC = () => {
     function fnIngresar() {
         const data: string = encodeToken({
             key: localStorage.getItem("acc"),
-            shop: id,
             father: catSelect,
             name: values.name
         })

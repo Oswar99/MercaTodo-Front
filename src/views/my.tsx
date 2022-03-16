@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Categories from "../component/ComponentCategories";
 import { AddElementInv, LstInventario } from "../component/LstInventario";
 import VerifyUser from "../component/mainComponents";
 import Model from "../component/model";
@@ -13,6 +14,7 @@ const MyAccount: React.FC = () => {
                 { title: "MI INFO", icon: "", view: <MyInfo /> },
                 { title: "AGREGAR PRODUCTO", icon: "", view: <AddElementInv /> },
                 { title: "MIS PRODUCTOS", icon: "", view: <LstInventario /> },
+                { title: "CATEGORIAS", icon: "", view: <Categories /> },
             ]}
             />
         </div>
