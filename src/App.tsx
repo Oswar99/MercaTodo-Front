@@ -10,6 +10,7 @@ import RegisterView from './views/registerView';
 import MAccount from './views/my';
 import VerifyView from './views/verify';
 import { TerminosAndCondiciones } from './component/TerminosAndCondiciones';
+import MainDetaPRoducto from './views/DetaProducto';
 
 
 const App: React.FC = () => (
@@ -21,6 +22,8 @@ const App: React.FC = () => (
         <Route path="/my" exact component={MAccount}/>
         <Route path="/verify/:id" exact component={VerifyView}/>
         <Route path="/terminos" exact component={TerminosAndCondiciones}/>
+        <Route path="/productos/:id" exact component={MainDetaPRoducto} />
+
       </Switch>
   </HashRouter>
   

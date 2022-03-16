@@ -59,10 +59,8 @@ export const CardE: React.FC<ICardE> = ({ val }) => {
   return (
     <div className="card py-2 col-md-2">
 
-
-
       <div className="" style={{ position: "relative" }}>
-        <img src={selected[0].file} alt={val.name} className="rounded-lg" style={{ width: "100%", height: "" }} />
+        <img src={selected[0].file} alt={val.name} className="rounded-lg" style={{ width: "100%", height: 200 }} />
         <h6 style={{ marginTop: 20 }}><b>{val.name}</b></h6>
         <p>{val.description}</p>
         <p><b>Precio: </b>{val.value}</p>
