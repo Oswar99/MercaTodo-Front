@@ -1,0 +1,28 @@
+#divPrincipal{
+    border: 2px solid black;
+    border-radius: 5px !important; 
+    box-shadow: 2px 2px 2px 0px !important ;
+}
+
+
+#Nav{
+    background-color: #131921 !important;
+    height: 63px !important;
+    border-radius: 0px !important;
+}
+
+.etiqueta{
+    color: white !important;
+    font-family: 'League Gothic', sans-serif !important;
+    font-style: italic;
+}
+
+#checklist{
+    margin: auto;
+    margin-top: 20px;
+}
+
+#exampleCheck11{
+    margin-top: 7px ;
+}
+
