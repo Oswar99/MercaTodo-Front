@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 import '../css/registro.css'
+import mt from "../img/mercatodo1.png"
 
 interface IHeader {
     inicio?: boolean;
@@ -13,10 +14,12 @@ const Header: React.FC<IHeader> = ({ inicio }) => {
     const [viewLogin, setViewLogin] = useState(false);
 
     return (
-        <Navbar id='Nav' className="navbar navbar-expand-lg navbar-light fixed-up shadow-sm rounded-lg" collapseOnSelect expand="lg" style={{ height: window.innerHeight * 0.1, backgroundColor: "white", color: "white", opacity: "95%" }}>
+        <Navbar className="navbar navbar-expand-lg navbar-light fixed-up shadow-sm rounded-lg" collapseOnSelect expand="lg" style={{ minHeight: window.innerHeight * 0.1, backgroundColor: "white", color: "black", opacity: "95%" }}>
 
             <Navbar.Brand href="" style={{ marginLeft: 25 }}>
-                <div></div>
+                <Link to="/">
+                    <img src={mt} alt="mt-brand" width={window.innerWidth * 0.13} />
+                </Link>
             </Navbar.Brand>
 
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -28,16 +31,16 @@ const Header: React.FC<IHeader> = ({ inicio }) => {
 
                 {!localStorage.getItem("acc") && (
                     <Nav>
-                        <Link className="btn etiqueta" to="/registrarse">Registrarse</Link>
+                        <Link className="btn" style={{ fontStyle: "normal" }} to="/registrarse">Registrarse</Link>
                         {!viewLogin && (
-                            <button className="btn etiqueta" onClick={() => setViewLogin(true)}>Iniciar Sesión</button>
+                            <button className="btn" style={{ fontStyle: "normal" }} onClick={() => setViewLogin(true)}>Iniciar Sesión</button>
                         )}
                     </Nav>
                 )}
 
                 {localStorage.getItem("acc") && (
                     <Nav>
-                        <button className="btn etiqueta" onClick={() => {
+                        <button className="btn" onClick={() => {
                             localStorage.removeItem("acc");
                             localStorage.removeItem("us-01");
                             window.location.href = "/#/";

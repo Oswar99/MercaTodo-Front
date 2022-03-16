@@ -262,8 +262,6 @@ const ElementInventario: React.FC<IElementInventario> = ({ element, multiple, fa
                     const data: any[] = await decodeToken(m.data.key);
                     const lst: { file: string }[] = [];
 
-                    console.log(data)
-
                     if (multiple) {
                         for (let element of data) {
                             await getFile({ type: element.type, route: element.route }).then(v => {

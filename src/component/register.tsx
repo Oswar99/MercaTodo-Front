@@ -108,7 +108,7 @@ const RegisterForm: React.FC = () => {
     };
 
     return (
-        <div id='divPrincipal' className="container rounded py-4 shadow-sm bg-white text-center" style={{marginTop:50, padding:50}}>
+        <div className="container rounded py-4 shadow-sm bg-white text-center" style={{marginTop:50, padding:50}}>
             <h3 className="py-2"><b>Formulario de Registro</b></h3>
             <div className="row">
                 <div className="col-md-6 py-2">
