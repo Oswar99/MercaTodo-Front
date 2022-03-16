@@ -215,13 +215,13 @@ export const AddElementInv: React.FC<IAddElementInv> = ({ classValue, update, da
                 </div>
 
                 {(!update) && (
-                    <div className="col-md-12 py-2">
+                    <div className="col-md-6 py-2">
                         <label className="text-left">Categorias</label>
                         <BodyDrop fnSelect={setSelect} fnUpd={() => { }} upd={false} mode={true} />
                     </div>
                 )}
 
-                <div className={update ? "col-md-12 py-2" : "col-md-12 py-2"}>
+                <div className={update ? "col-md-12 py-2" : "col-md-6 py-2"}>
                     <label className="text-left">Imagenes</label>
                     <FileUp2 father={father} />
                 </div>

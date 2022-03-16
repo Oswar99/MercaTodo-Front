@@ -6,7 +6,7 @@ import { CardE } from "./components";
 export const MainPage: React.FC = () => {
     const [lstInv, setLstInv] = useState([]);
     const [update, setUpdate] = useState(false);
-    const [updating, setUpdating] = useState(false);
+    //const [updating, setUpdating] = useState(false);
 
     useEffect(()=>{
         if(!update){
@@ -17,7 +17,7 @@ export const MainPage: React.FC = () => {
                 setLstInv(await decodeToken(v.data.key));
             });
         };
-    });
+    },[update]);
 
     return(
         <div className="container-fluid py-4 px-5">

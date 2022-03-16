@@ -4,7 +4,6 @@ import cart from "../img/g-icons/cart.png";
 import { Link } from "react-router-dom";
 import { getFile, getFiles } from "../services/file.service";
 import { decodeToken } from "../helpers/setup.helper";
-import { ComponentVis2 } from "./ComponentVis";
 
 export const CardE2: React.FC = () => {
   return (

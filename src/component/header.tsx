@@ -39,13 +39,16 @@ const Header: React.FC<IHeader> = ({ inicio }) => {
                 )}
 
                 {localStorage.getItem("acc") && (
-                    <Nav>
-                        <button className="btn" onClick={() => {
-                            localStorage.removeItem("acc");
-                            localStorage.removeItem("us-01");
-                            window.location.href = "/#/";
-                        }}>Cerrar Sesión</button>
-                    </Nav>
+                        
+                        <Nav>
+                            <Link className="btn" style={{ fontStyle: "normal" }} to="/my">Mi Panel</Link>
+
+                            <button className="btn" onClick={() => {
+                                localStorage.removeItem("acc");
+                                localStorage.removeItem("us-01");
+                                window.location.href = "/#/";
+                            }}>Cerrar Sesión</button>
+                        </Nav>
                 )}
 
                 {viewLogin && (

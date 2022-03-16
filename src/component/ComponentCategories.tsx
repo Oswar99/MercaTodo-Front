@@ -6,6 +6,7 @@ import { getAllCategoryByFilter, postCategory, deleteCategories } from "../servi
 import { UpdatingView2 } from "./ComponentUpdatingView";
 
 import iconDelete from "../img/g-icons/baseline_delete_white_24dp.png";
+import { bg_head } from "../css/colors";
 
 interface IBodyDrop {
     fnSelect: (data: string) => void;
@@ -108,10 +109,10 @@ export const BodyDrop: React.FC<IBodyDrop> = ({ fnSelect, fnUpd, father, bgColor
                 <h6 className="col-md-12">No hay Categorias para mostrar!</h6>
             )}
             {listCat.map((val: any, index) =>
-                <div className="col-md-12">
+                <div className="col-md-12"  style={{marginBottom:5}}>
                     <div className="rounded-lg text-center py-1"
                         key={index}
-                        style={(selected === val._id) ? { backgroundColor: "#A9F5BC" } : { backgroundColor: bgColor ? bgColor : "white", borderStyle: bgColor ? "none" : "solid", borderWidth: 1, borderColor: "#A9F5BC" }}
+                        style={(selected === val._id) ? { backgroundColor: bg_head } : { backgroundColor: bgColor ? bgColor : "white", borderStyle: bgColor ? "none" : "solid", borderWidth: 1, borderColor: bg_head }}
                     >
                         {(!mode) ?
                             <div className="row">
