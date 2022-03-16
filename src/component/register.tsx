@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useFormHelper from "../helpers/useFormHelper";
 import { postUser } from "../services/user.service";
 
-const expRegular = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+const expRegular = /^(([^<>()[\],;:\s@]+([^<>()[\],;:\s@]+)*)|(.+))@(([^<>()[\],;:\s@]+)+[^<>()[\],;:\s@]{2,})$/i
 
 const RegisterForm: React.FC = () => {
 
@@ -23,7 +23,6 @@ const RegisterForm: React.FC = () => {
     const {
         values,
         handleChange,
-        updateValues
     } = useFormHelper(states);
 
     function txtCorreo(e:any){
@@ -79,10 +78,6 @@ const RegisterForm: React.FC = () => {
                 <div className="col-md-6 py-2">
                     <label>Telefono</label>
                     <input className="form-control" name="phone" onChange={handleChange} value={values.phone}  />
-                </div>
-                <div className="col-md-6 py-2">
-                    <label>Nombre de Usuario</label>
-                    <input className="form-control" name="nick" onChange={handleChange} value={values.nick}  />
                 </div>
                 <div className="col-md-6 py-2">
                     <label>Contraseña</label><small style={{color:"red"}}>{m2 && " No valida"}</small>

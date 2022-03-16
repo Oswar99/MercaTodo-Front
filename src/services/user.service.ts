@@ -38,3 +38,21 @@ export function postUser(data: any): Promise<any>{
             .catch(error => resolve( {data: {successed:false, message: error.message}} ) );
     });
 };
+
+export function sendMail(data: any): Promise<any>{
+    return new Promise<any>( resolve => {
+        const t = encodeToken(data);
+        axios.put(`${query}/users`, {key:t})
+            .then(result => resolve(result) )
+            .catch(error => resolve( {data: {successed:false, message: error.message}} ) );
+    });
+};
+
+export function verifyEmail(data: any): Promise<any>{
+    return new Promise<any>( resolve => {
+        const t = encodeToken(data);
+        axios.put(`${query}/verify`, {key:t})
+            .then(result => resolve(result) )
+            .catch(error => resolve( {data: {successed:false, message: error.message}} ) );
+    });
+};

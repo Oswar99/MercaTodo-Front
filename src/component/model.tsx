@@ -20,7 +20,7 @@ const Model: React.FC<IModel> = ({value}) => {
                 setRedirect(true);
             };
         };
-    });
+    },[update]);
 
     if(redirect){
         return(
@@ -29,7 +29,7 @@ const Model: React.FC<IModel> = ({value}) => {
     };
 
     return(
-        <div>
+        <div className="bg-white" style={{minHeight:window.innerHeight}}>
             <Header />
             <div className="container-fluid">{value}</div>
         </div>

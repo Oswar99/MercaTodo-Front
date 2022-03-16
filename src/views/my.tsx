@@ -1,9 +1,25 @@
 import React, { useEffect, useState } from "react";
-import Header from "../component/header";
+import { AddElementInv, LstInventario } from "../component/LstInventario";
+import VerifyUser from "../component/mainComponents";
 import Model from "../component/model";
+import ViewDash from "../component/ViewDash";
 import { decodeToken } from "../helpers/setup.helper";
 
 const MyAccount: React.FC = () => {
+    return (
+        <div>
+            <VerifyUser />
+            <ViewDash elements={[
+                { title: "MI INFO", icon: "", view: <MyInfo /> },
+                { title: "AGREGAR PRODUCTO", icon: "", view: <AddElementInv /> },
+                { title: "MIS PRODUCTOS", icon: "", view: <LstInventario /> },
+            ]}
+            />
+        </div>
+    )
+};
+
+const MyInfo: React.FC = () => {
     const [update, setUpdate] = useState(false);
     const [user, setUser] = useState({
         enabled: false,
@@ -25,32 +41,16 @@ const MyAccount: React.FC = () => {
             const t = localStorage.getItem("us-01");
             setUser(decodeToken(t!));
         };
-    });
-    
-    return (
-        <div>
-            {!user.verified && (
-                <div className="alert alert-danger" style={{ marginTop: 20 }}>
-                    Su correo no ha sido verificado
-                    <button className="btn btn-outline-light" style={{ marginLeft: 20 }}>Verificar ahora</button>
-                </div>
-            )}
-            <div className="row">
-                <div className="col-md-4">
+    }, [update]);
 
-                </div>
-                <div className="col-md-8">
-                    <div className="container-fluid rounded shadow-sm py-3 bg-white" style={{ marginTop: 10, marginBottom: 20 }}>
-                        <h6 className="py-1"><b>Nombre Completo: </b>{user.user_name}</h6>
-                        <h6 className="py-1"><b>Nombre de Usuario: </b>{user.user_nick}</h6>
-                        <h6 className="py-1"><b>Email: </b>{user.user_mail}</h6>
-                        <h6 className="py-1"><b>Direccion: </b>{user.user_address}</h6>
-                    </div>
-                </div>
-            </div>
+    return (
+        <div className="container-fluid rounded shadow-sm py-3 bg-white" style={{ marginTop: 10, marginBottom: 20 }}>
+            <h6 className="py-1"><b>Nombre Completo: </b>{user.user_name}</h6>
+            <h6 className="py-1"><b>Email: </b>{user.user_mail}</h6>
+            <h6 className="py-1"><b>Direccion: </b>{user.user_address}</h6>
         </div>
     )
-};
+}
 
 const MAccount: React.FC = () => {
     return (
