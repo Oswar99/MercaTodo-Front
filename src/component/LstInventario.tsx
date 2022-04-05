@@ -8,9 +8,10 @@ import { postProducto, getAllProductos, updateProducto } from "../services/shop.
 import { Link } from "react-router-dom";
 import { ComponentVis2 } from "./ComponentVis";
 import { getFile, getFiles } from "../services/file.service";
-import { BodyDrop } from "./ComponentCategories";
+import { SelectCategories } from "./ComponentCategories";
 
 import iconSearch from "../img/g-icons/baseline_search_white_24dp.png";
+import { CardE } from "./components";
 
 interface IAddElementInv {
     classValue?: string,
@@ -43,10 +44,6 @@ export const AddElementInv: React.FC<IAddElementInv> = ({ classValue, update, da
 
     const { id }: any = useParams();
 
-    function setSelect(e: string) {
-        setCat(e);
-    };
-
     async function btnTerminar() {
         if (!update) {
 
@@ -64,7 +61,7 @@ export const AddElementInv: React.FC<IAddElementInv> = ({ classValue, update, da
                 };
                 setPosting(false);
             });
-            
+
         } else {
             const key = encodeToken({
                 key: localStorage.getItem("acc"),
@@ -97,7 +94,7 @@ export const AddElementInv: React.FC<IAddElementInv> = ({ classValue, update, da
                 cantidad: dataValue.count,
             });
         };
-        if(father && update){
+        if (father && update) {
             window.location.reload();
         }
     }, [upd, father, update, dataValue, updateValues]);
@@ -110,7 +107,7 @@ export const AddElementInv: React.FC<IAddElementInv> = ({ classValue, update, da
                 <h3>Ingreso de Productos</h3>
             )}
             <div className="row" style={!update ? { marginTop: 30 } : {}}>
-                
+
                 <div className={mclass6}>
                     {update && (
                         <label className="text-left">
@@ -183,21 +180,12 @@ export const AddElementInv: React.FC<IAddElementInv> = ({ classValue, update, da
                         defaultValue={values.valor_de_venta}
                     />
                 </div>
-                <div className={mclass6}>
-                    {update && (
-                        <label className="text-left">
-                            Cantidad
-                        </label>
-                    )}
-                    <input
-                        placeholder="Cantidad (Unidades)"
-                        className="form-control"
-                        type="number"
-                        name="cantidad"
-                        onChange={handleChange}
-                        defaultValue={values.cantidad}
-                    />
-                </div>
+
+                {(!update) && (
+                    <div className="col-md-6 py-2">
+                        <SelectCategories setCat={setCat} />
+                    </div>
+                )}
 
                 <div className="col-md-12 py-2">
                     {update && (
@@ -214,22 +202,15 @@ export const AddElementInv: React.FC<IAddElementInv> = ({ classValue, update, da
                     />
                 </div>
 
-                {(!update) && (
-                    <div className="col-md-6 py-2">
-                        <label className="text-left">Categorias</label>
-                        <BodyDrop fnSelect={setSelect} fnUpd={() => { }} upd={false} mode={true} />
-                    </div>
-                )}
-
-                <div className={update ? "col-md-12 py-2" : "col-md-6 py-2"}>
+                <div className={update ? "col-md-12 py-2" : "col-md-12 py-2"}>
                     <label className="text-left">Imagenes</label>
                     <FileUp2 father={father} />
                 </div>
             </div>
-            <div className="container-fluid" style={{ marginTop: 30, marginBottom: 30 }}>
+            <div className="" style={{ marginTop: 30, marginBottom: 30 }}>
                 <button className="btn btn-success" onClick={btnTerminar}>
                     {(!posting) ?
-                        "Terminar"
+                        "Guardar"
                         :
                         <Loading />
                     }
@@ -241,12 +222,10 @@ export const AddElementInv: React.FC<IAddElementInv> = ({ classValue, update, da
 
 interface IElementInventario {
     element: any;
-    facturacion?: boolean;
-    multiple?: boolean;
     setElementSelected?: (data: any) => void;
 };
 
-const ElementInventario: React.FC<IElementInventario> = ({ element, multiple, facturacion, setElementSelected }) => {
+export const ElementInventario: React.FC<IElementInventario> = ({ element, setElementSelected }) => {
 
     const [update, setUpdate] = useState(false);
     const [selected, setSelected] = useState([{ file: "" }]);
@@ -259,42 +238,26 @@ const ElementInventario: React.FC<IElementInventario> = ({ element, multiple, fa
             }
             getFiles(kfiles).then(async m => {
                 if (m.data.successed) {
+
                     const data: any[] = await decodeToken(m.data.key);
                     const lst: { file: string }[] = [];
 
-                    if (multiple) {
-                        for (let element of data) {
-                            await getFile({ type: element.type, route: element.route }).then(v => {
-                                if (v.status === 200) {
-                                    lst.push({
-                                        file: URL.createObjectURL(v.data)
-                                    });
-                                };
+                    await getFile({ type: data[0]!.type, route: data[0]!.route }).then(v => {
+                        if (v.status === 200) {
+                            lst.push({
+                                file: URL.createObjectURL(v.data)
                             });
                         };
-                    } else if (data.length > 0) {
-                        await getFile({ type: data[0]!.type, route: data[0]!.route }).then(v => {
-                            if (v.status === 200) {
-                                lst.push({
-                                    file: URL.createObjectURL(v.data)
-                                });
-                            };
-                        });
-                    };
+                    });
+
                     setSelected(lst);
                 };
             });
         };
-    }, [update, multiple, element]);
-
-    function setSelect() {
-        if (facturacion) {
-            setElementSelected!(element);
-        };
-    }
+    }, [update, element]);
 
     return (
-        <div className="rounded-lg shadow-sm d-flex justify-content-center" onClick={setSelect} style={{ height: "100%", alignItems: "center" }}>
+        <div className="rounded-lg shadow-sm d-flex justify-content-center" style={{ height: "100%", alignItems: "center" }}>
 
             <div>
                 <ComponentVis2 elements={selected} interval={5000} />
@@ -302,9 +265,7 @@ const ElementInventario: React.FC<IElementInventario> = ({ element, multiple, fa
                     <h6 className="">{element.name}</h6>
                     <h6 className="">Cantidad: {element.count}</h6>
                     <h6 className="">L. {element.value}</h6>
-                    {(!facturacion) && (
-                        <Link className="stretched-link" to={`/productos/${element._id}`} />
-                    )}
+                    <Link className="stretched-link" to={`/productos/${element._id}`} />
                 </div>
             </div>
 
@@ -313,21 +274,20 @@ const ElementInventario: React.FC<IElementInventario> = ({ element, multiple, fa
 };
 
 interface ILstInventario {
-    facturacion?: boolean,
     limit?: number,
 }
 
-export const LstInventario: React.FC<ILstInventario> = ({ facturacion, limit }) => {
+export const LstInventario: React.FC<ILstInventario> = ({ limit }) => {
     const [lstInv, setLstInv] = useState([]);
     const [update, setUpdate] = useState(false);
     const [updating, setUpdating] = useState(false);
     const [txtBusq, setTxtBusq] = useState("");
-    const [elementSelected, setElementSelected] = useState({
-        _id: "",
-        name: "",
-        value: "",
-        count: 0,
-    });
+    //const [elementSelected, setElementSelected] = useState({
+    //    _id: "",
+    //    name: "",
+    //    value: "",
+    //    count: 0,
+    //});
 
 
     const [filter, setFilter] = useState({
@@ -336,20 +296,20 @@ export const LstInventario: React.FC<ILstInventario> = ({ facturacion, limit }) 
         limit: limit ? limit : 500,
     });
 
-    function fnElementSelected(data: any) {
-        if (elementSelected._id !== data._id) {
-            setElementSelected(data);
-            localStorage.setItem("p-01", encodeToken(data))
-        } else {
-            setElementSelected({
-                _id: "",
-                name: "",
-                value: "",
-                count: 0,
-            });
-            localStorage.removeItem("p-01");
-        };
-    };
+    //function fnElementSelected(data: any) {
+    //    if (elementSelected._id !== data._id) {
+    //        setElementSelected(data);
+    //        localStorage.setItem("p-01", encodeToken(data))
+    //    } else {
+    //        setElementSelected({
+    //            _id: "",
+    //            name: "",
+    //            value: "",
+    //            count: 0,
+    //        });
+    //        localStorage.removeItem("p-01");
+    //    };
+    //};
 
     function txtBusqueda(e: any) {
         setTxtBusq(e.target.value);
@@ -395,7 +355,7 @@ export const LstInventario: React.FC<ILstInventario> = ({ facturacion, limit }) 
     //backgroundColor:"#E0F8E0"
 
     return (
-        <div>
+        <div className="container-fluid">
             <div className="row">
                 <div className="container-fluid col-md-7 text-left" style={{ marginTop: 10, marginBottom: 15 }}>
                     <h4><b>Inventario</b></h4>
@@ -424,9 +384,7 @@ export const LstInventario: React.FC<ILstInventario> = ({ facturacion, limit }) 
                 :
                 <div className="row rounded-lg" style={{}}>
                     {lstInv.map((val: any, index) =>
-                        <div className="col-md-3 rounded-lg" key={index} style={(val._id === elementSelected._id) ? { borderStyle: "solid", borderWidth: 3, borderColor: "#58FA82" } : {}}>
-                            <ElementInventario key={index} element={val} facturacion={facturacion} setElementSelected={fnElementSelected} />
-                        </div>
+                        <CardE key={Math.floor(Math.random() * (999999999 - 1)) + 1} val={val} />
                     )}
                     <div className="container-fluid col-md-12">
                         {(lstInv.length === 0) && (

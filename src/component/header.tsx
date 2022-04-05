@@ -14,7 +14,7 @@ const Header: React.FC<IHeader> = ({ inicio }) => {
     const [viewLogin, setViewLogin] = useState(false);
 
     return (
-        <Navbar className="navbar navbar-expand-lg navbar-light fixed-up shadow-sm rounded-lg" collapseOnSelect expand="lg" style={{ minHeight: window.innerHeight * 0.1, backgroundColor: "white", color: "black", opacity: "95%" }}>
+        <Navbar className="navbar navbar-expand-lg navbar-light fixed-up shadow-sm rounded-lg" collapseOnSelect expand="lg" style={{ minHeight: window.innerHeight * 0.13, backgroundColor: "white", color: "black", opacity: "95%" }}>
 
             <Navbar.Brand href="" style={{ marginLeft: 25 }}>
                 <Link to="/">

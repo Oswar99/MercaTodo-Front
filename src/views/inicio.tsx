@@ -1,4 +1,5 @@
 import React from "react";
+//import ChatComponent from "../component/chat";
 import Header from "../component/header";
 import { MainPage } from "../component/Inicio";
 

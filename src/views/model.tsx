@@ -41,7 +41,7 @@ const Main: React.FC<IMain> = ({ value }) => {
     return (
         <div className="thinBar">
             <Header />
-            <div className="container-fluid text-center thinBar" style={{ minHeight : window.innerHeight * 0.88, marginTop: 100, marginBottom:10 }}>
+            <div className="container-fluid text-center thinBar" style={{ minHeight : window.innerHeight * 0.87 }}>
                 {updating ?
                     <UpdatingView message="Verificando clave..." />
                     :

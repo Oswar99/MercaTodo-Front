@@ -8,8 +8,8 @@ import { deleteFile } from "../services/file.service";
 interface IComponentVis {
     elements: any[],
     interval?: number,
-    width?: string,
-    height?: string,
+    width?: any,
+    height?: any,
     deleteButton? : boolean;
 }
 

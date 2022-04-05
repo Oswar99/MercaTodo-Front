@@ -15,12 +15,47 @@ interface IBodyDrop {
     father?: string,
     mode?: boolean,
     upd: boolean,
+};
+
+interface ISelCat{
+    setCat: (e:string) => void;
+    place?: string,
+}
+export const SelectCategories: React.FC<ISelCat> = ({setCat, place}) => {
+
+    const [update, setUpdate] = useState(false);
+    const [listCat, setListCat] = useState([]);
+
+    useEffect(() => {
+        if (!update) {
+            setUpdate(true);
+            const data: string = encodeToken({
+                filter: { father: "main" }
+            });
+            getAllCategoryByFilter(data).then(v => {
+                if (v.data.successed) {
+                    const resp = decodeToken(v.data.key)
+                    setListCat(resp);
+                };
+            });
+        };
+        
+    }, [update]);
+
+    return(
+        <select className="form-control" onChange={(e)=> setCat(e.target.value)} >
+            <option key={0} value="" >{place? place:"Seleccionar Categoria"}</option>
+            {listCat.map((val:any, index) => 
+                <option key={index + 1} value={val._id}>{val.name}</option>
+            )}
+        </select>
+    )
 }
 
 export const BodyDrop: React.FC<IBodyDrop> = ({ fnSelect, fnUpd, father, bgColor, mode, upd }) => {
     const [update, setUpdate] = useState(false);
-    const [updating, setUpdating] = useState(false);
     const [listCat, setListCat] = useState([]);
+    const [updating, setUpdating] = useState(false);
     const [selected, setSelected] = useState("");
 
     const { id }: any = useParams();

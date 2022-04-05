@@ -1,5 +1,5 @@
 import React from "react";
-import adelissa2 from "../img/adelissa verde2.png";
+import adelissa2 from "../img/mercatodo.png";
 
 interface IUpdating {
     message?: string,
@@ -17,7 +17,7 @@ const UpdatingView: React.FC<IUpdating> = ({ message }) => {
     return (
         <div className="container-fluid justify-content-center d-flex" style={{ minHeight: window.innerHeight * 0.85, marginTop: 80, alignItems: "center" }}>
             <img src={adelissa2} width={window.innerWidth * 0.2} alt="img1" />
-            <span className="spinner-grow spinner-grow-lg text-success" role="status" aria-hidden="true" style={{ width: window.innerWidth * 0.04, height: window.innerWidth * 0.04 }}>
+            <span className="spinner-grow spinner-grow-lg text-warning" role="status" aria-hidden="true" style={{ width: window.innerWidth * 0.04, height: window.innerWidth * 0.04 }}>
                 <span className="spinner-border spinner-border-lg text-light" role="status" aria-hidden="true" style={{ width: window.innerWidth * 0.04, height: window.innerWidth * 0.04 }}>
                     <span className="spinner-border spinner-border-lg text-light" role="status" aria-hidden="true" style={{ width: window.innerWidth * 0.04, height: window.innerWidth * 0.04 }}></span>
                 </span>
@@ -29,7 +29,7 @@ const UpdatingView: React.FC<IUpdating> = ({ message }) => {
 export const UpdatingView2: React.FC<IUpdating> = ({ message }) => {
     return (
         <div className="container-fluid justify-content-center d-flex" style={{ minHeight: "100%", marginTop: 0, alignItems: "center" }}>
-            <span className="spinner-grow spinner-grow-lg text-success" role="status" aria-hidden="true" style={{ width: window.innerWidth * 0.04, height: window.innerWidth * 0.04 }}>
+            <span className="spinner-grow spinner-grow-lg text-warning" role="status" aria-hidden="true" style={{ width: window.innerWidth * 0.04, height: window.innerWidth * 0.04 }}>
                 <span className="spinner-border spinner-border-lg text-light" role="status" aria-hidden="true" style={{ width: window.innerWidth * 0.04, height: window.innerWidth * 0.04 }}>
                     <span className="spinner-border spinner-border-lg text-light" role="status" aria-hidden="true" style={{ width: window.innerWidth * 0.04, height: window.innerWidth * 0.04 }}></span>
                 </span>

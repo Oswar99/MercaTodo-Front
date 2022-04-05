@@ -30,10 +30,27 @@ export function getInfFile(id:string): Promise<any>{
     });
 };
 
+export function getReports(id:string): Promise<any>{
+    return new Promise<any>( resolve => {
+        axios.get(`${query}/report/${id}`)
+        .then(result => resolve(result) )
+        .catch(error => resolve( {data: {successed:false}} ) );
+    });
+};
+
 export function postUser(data: any): Promise<any>{
     return new Promise<any>( resolve => {
         const t = encodeToken(data);
         axios.post(`${query}/users`, {key:t})
+            .then(result => resolve(result) )
+            .catch(error => resolve( {data: {successed:false, message: error.message}} ) );
+    });
+};
+
+export function newReport(data: any): Promise<any>{
+    return new Promise<any>( resolve => {
+        const t = encodeToken(data);
+        axios.post(`${query}/report`, {key:t})
             .then(result => resolve(result) )
             .catch(error => resolve( {data: {successed:false, message: error.message}} ) );
     });
@@ -52,6 +69,15 @@ export function verifyEmail(data: any): Promise<any>{
     return new Promise<any>( resolve => {
         const t = encodeToken(data);
         axios.put(`${query}/verify`, {key:t})
+            .then(result => resolve(result) )
+            .catch(error => resolve( {data: {successed:false, message: error.message}} ) );
+    });
+};
+
+export function updateUser(data: any): Promise<any>{
+    return new Promise<any>( resolve => {
+        const t = encodeToken(data);
+        axios.put(`${query}/user`, {key:t})
             .then(result => resolve(result) )
             .catch(error => resolve( {data: {successed:false, message: error.message}} ) );
     });

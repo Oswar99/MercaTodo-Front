@@ -37,5 +37,5 @@ export function checkCookie(): Promise<boolean> {
 
 export function getServer(){
   //direccion ip del servidor
-  return "http://localhost:3001"
+  return "http://103.72.79.120:3001"
 };
